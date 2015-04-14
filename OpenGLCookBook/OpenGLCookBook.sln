@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GettingStarted", "GettingStarted\GettingStarted.vcxproj", "{A769B3F4-6947-4672-B7EA-C5F560574129}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleTriangle", "SimpleTriangle\SimpleTriangle.vcxproj", "{6CA66A60-F005-429C-A0D1-66FC2A28E006}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RippleDeformer", "RippleDeformer\RippleDeformer.vcxproj", "{F28A1EF1-49D3-48D5-B0AB-57810788325D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SubdivisionGeometryShader", "SubdivisionGeometryShader\SubdivisionGeometryShader.vcxproj", "{BCB7BF76-2FC8-4D25-B4B4-182625FCD468}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SubdivisionGeometryShaderInstanced", "SubdivisionGeometryShaderInstanced\SubdivisionGeometryShaderInstanced.vcxproj", "{FADE0346-77D3-4F4D-9052-28C8F51239C6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageLoader", "ImageLoader\ImageLoader.vcxproj", "{334D2D8F-6235-4FEF-BE20-F5D158C0F106}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter1", "Chapter1", "{2BD5703C-CB10-40C7-90E9-FC1F885A77B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter2", "Chapter2", "{B3C3EE15-341D-49A3-A684-9122AFB3180B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleCamera", "SimpleCamera\SimpleCamera.vcxproj", "{C800CAF8-84F1-4722-8E43-CDF5DDD1AF5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A769B3F4-6947-4672-B7EA-C5F560574129}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A769B3F4-6947-4672-B7EA-C5F560574129}.Debug|Win32.Build.0 = Debug|Win32
+		{A769B3F4-6947-4672-B7EA-C5F560574129}.Release|Win32.ActiveCfg = Release|Win32
+		{A769B3F4-6947-4672-B7EA-C5F560574129}.Release|Win32.Build.0 = Release|Win32
+		{6CA66A60-F005-429C-A0D1-66FC2A28E006}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6CA66A60-F005-429C-A0D1-66FC2A28E006}.Debug|Win32.Build.0 = Debug|Win32
+		{6CA66A60-F005-429C-A0D1-66FC2A28E006}.Release|Win32.ActiveCfg = Release|Win32
+		{6CA66A60-F005-429C-A0D1-66FC2A28E006}.Release|Win32.Build.0 = Release|Win32
+		{F28A1EF1-49D3-48D5-B0AB-57810788325D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F28A1EF1-49D3-48D5-B0AB-57810788325D}.Debug|Win32.Build.0 = Debug|Win32
+		{F28A1EF1-49D3-48D5-B0AB-57810788325D}.Release|Win32.ActiveCfg = Release|Win32
+		{F28A1EF1-49D3-48D5-B0AB-57810788325D}.Release|Win32.Build.0 = Release|Win32
+		{BCB7BF76-2FC8-4D25-B4B4-182625FCD468}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BCB7BF76-2FC8-4D25-B4B4-182625FCD468}.Debug|Win32.Build.0 = Debug|Win32
+		{BCB7BF76-2FC8-4D25-B4B4-182625FCD468}.Release|Win32.ActiveCfg = Release|Win32
+		{BCB7BF76-2FC8-4D25-B4B4-182625FCD468}.Release|Win32.Build.0 = Release|Win32
+		{FADE0346-77D3-4F4D-9052-28C8F51239C6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FADE0346-77D3-4F4D-9052-28C8F51239C6}.Debug|Win32.Build.0 = Debug|Win32
+		{FADE0346-77D3-4F4D-9052-28C8F51239C6}.Release|Win32.ActiveCfg = Release|Win32
+		{FADE0346-77D3-4F4D-9052-28C8F51239C6}.Release|Win32.Build.0 = Release|Win32
+		{334D2D8F-6235-4FEF-BE20-F5D158C0F106}.Debug|Win32.ActiveCfg = Debug|Win32
+		{334D2D8F-6235-4FEF-BE20-F5D158C0F106}.Debug|Win32.Build.0 = Debug|Win32
+		{334D2D8F-6235-4FEF-BE20-F5D158C0F106}.Release|Win32.ActiveCfg = Release|Win32
+		{334D2D8F-6235-4FEF-BE20-F5D158C0F106}.Release|Win32.Build.0 = Release|Win32
+		{C800CAF8-84F1-4722-8E43-CDF5DDD1AF5B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C800CAF8-84F1-4722-8E43-CDF5DDD1AF5B}.Debug|Win32.Build.0 = Debug|Win32
+		{C800CAF8-84F1-4722-8E43-CDF5DDD1AF5B}.Release|Win32.ActiveCfg = Release|Win32
+		{C800CAF8-84F1-4722-8E43-CDF5DDD1AF5B}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A769B3F4-6947-4672-B7EA-C5F560574129} = {2BD5703C-CB10-40C7-90E9-FC1F885A77B5}
+		{334D2D8F-6235-4FEF-BE20-F5D158C0F106} = {2BD5703C-CB10-40C7-90E9-FC1F885A77B5}
+		{F28A1EF1-49D3-48D5-B0AB-57810788325D} = {2BD5703C-CB10-40C7-90E9-FC1F885A77B5}
+		{6CA66A60-F005-429C-A0D1-66FC2A28E006} = {2BD5703C-CB10-40C7-90E9-FC1F885A77B5}
+		{BCB7BF76-2FC8-4D25-B4B4-182625FCD468} = {2BD5703C-CB10-40C7-90E9-FC1F885A77B5}
+		{FADE0346-77D3-4F4D-9052-28C8F51239C6} = {2BD5703C-CB10-40C7-90E9-FC1F885A77B5}
+		{C800CAF8-84F1-4722-8E43-CDF5DDD1AF5B} = {B3C3EE15-341D-49A3-A684-9122AFB3180B}
+	EndGlobalSection
+EndGlobal
