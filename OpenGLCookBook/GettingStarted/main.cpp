@@ -1,12 +1,13 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <iostream>
+#include <cassert>
 
 #include "GLSLShader.h"
 
-
-
 using namespace std;
+
+#define GL_CHECK_ERRORS assert(glGetError() == GL_NO_ERROR);
 
 const int WIDTH = 1280;
 const int HEIGHT = 960;
@@ -40,7 +41,7 @@ int main(int argc, char* argv[])
 	glutInitContextVersion(3, 3);
 	glutInitContextFlags(GLUT_CORE_PROFILE | GLUT_DEBUG);
 	glutInitWindowSize(1280, 960);
-	glutCreateWindow("Getting started with OpenGL 4.3");
+	glutCreateWindow("Getting started with OpenGL 3.3");
 
 	glewExperimental = GL_TRUE;
 
@@ -57,6 +58,8 @@ int main(int argc, char* argv[])
 			cout << "Driver supports OpenGL 3.3\nDetails:" << endl;
 		}
 	}
+
+	err = glGetError();
 
 	cout << "\tUsing glew " << glewGetString(GLEW_VERSION) << endl;
 	cout << "\tVendor: " << glGetString(GL_VENDOR) << endl;
