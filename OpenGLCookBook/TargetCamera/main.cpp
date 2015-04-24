@@ -6,11 +6,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "Grid.h"
 #include "TargetCamera.h"
 
 TargetCamera camera;
-Grid *grid;
 
 #define GL_CHECK_ERRORS assert(glGetError()== GL_NO_ERROR);
 
@@ -145,7 +143,6 @@ void OnInit()
 
 	GL_CHECK_ERRORS
 
-	grid = new Grid(10, 10);
 
 	camera.setPosition(glm::vec3(5, 5, 5));
 	camera.setTarget(glm::vec3(0, 0, 0));
@@ -155,7 +152,6 @@ void OnInit()
 
 void OnShutdown()
 {
-	delete grid;
 	cout << "Shutdown successfull" << endl;
 }
 
@@ -207,7 +203,6 @@ void OnRender()
 	glm::mat4 P = camera.projectionMatrix();
 	glm::mat4 MVP = P * MV;
 
-	grid->render(glm::value_ptr(MVP));
 
 	glutSwapBuffers();
 }

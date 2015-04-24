@@ -11,10 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{C800CAF8-84F1-4722-8E43-CDF5DDD1AF5B}</ProjectGuid>
+    <ProjectGuid>{31FFC188-5C94-4B13-93A1-19A4233884EF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SimpleCamera</RootNamespace>
-    <ProjectName>SimpleCamera</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -93,14 +92,14 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GLSLShader.cpp" />
-    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Plane.cpp" />
     <ClCompile Include="TargetCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="GLSLShader.h" />
-    <ClInclude Include="Grid.h" />
+    <ClInclude Include="Plane.h" />
     <ClInclude Include="RenderableObject.h" />
     <ClInclude Include="TargetCamera.h" />
   </ItemGroup>
