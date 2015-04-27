@@ -1,3 +1,4 @@
+#define _USE_MATH_DEFINES
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <iostream>
@@ -7,8 +8,11 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "TargetCamera.h"
+#include "TexturedPlane.h"
+#include <cmath>
 
 TargetCamera camera;
+TexturedPlane* checker_plane;
 
 #define GL_CHECK_ERRORS assert(glGetError()== GL_NO_ERROR);
 
@@ -28,6 +32,8 @@ const int VK_A = 0x41;
 const int VK_D = 0x44;
 const int VK_Q = 0x51;
 const int VK_Z = 0x5a;
+
+GLuint checkerTextureID;
 
 float dt = 0;
 const float MOVE_SPEED = 0.125f;
@@ -101,7 +107,7 @@ void OnMouseMove(int x, int y)
 		float dy = float(y - oldY) / 100.0f;
 		float dx = float(oldX - x) / 100.0f;
 
-		if (useFiltering)
+		if (useFiltering) 
 		{
 			filterMouseMoves(dx, dy);
 		}
@@ -139,19 +145,66 @@ void OnMouseMove(int x, int y)
 
 void OnInit()
 {
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	GL_CHECK_ERRORS
+	//generate the checker texture
+	GLubyte data[128][128] = { 0 };
+	for (int j = 0; j<128; j++) {
+		for (int i = 0; i<128; i++) {
+			data[i][j] = (i <= 64 && j <= 64 || i>64 && j>64) ? 255 : 0;
+		}
+	}
+
+	glGenTextures(1, &checkerTextureID);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, checkerTextureID);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
 	GL_CHECK_ERRORS
 
+	GLfloat largest_supported_anisotropy;
+	glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &largest_supported_anisotropy);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, largest_supported_anisotropy);
+
+	//set mipmap base and max level
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 4);
+
+	//allocate texture object
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, 128, 128, 0, GL_RED, GL_UNSIGNED_BYTE, data);
+
+	//generate mipmaps
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	GL_CHECK_ERRORS
+
+	checker_plane = new TexturedPlane();
+
+	GL_CHECK_ERRORS
 
 	camera.setPosition(glm::vec3(5, 5, 5));
 	camera.setTarget(glm::vec3(0, 0, 0));
+
+	//also rotate the camera for proper orientation
+	glm::vec3 look = glm::normalize(camera.target() - camera.position());
+
+	float yaw = glm::degrees(float(atan2(look.z, look.x) + M_PI));
+	float pitch = glm::degrees(asin(look.y));
+	rX = yaw;
+	rY = pitch;
+
+	camera.rotate(rX, rY, 0);
 
 	cout << "Initialization successfull" << endl;
 }
 
 void OnShutdown()
 {
+	delete checker_plane;
+	glDeleteTextures(1, &checkerTextureID);
 	cout << "Shutdown successfull" << endl;
 }
 
@@ -203,6 +256,8 @@ void OnRender()
 	glm::mat4 P = camera.projectionMatrix();
 	glm::mat4 MVP = P * MV;
 
+	//render the chekered plane
+	checker_plane->render(glm::value_ptr(MVP));
 
 	glutSwapBuffers();
 }

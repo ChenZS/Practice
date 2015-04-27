@@ -95,6 +95,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="TargetCamera.cpp" />
+    <ClCompile Include="TexturedPlane.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -102,6 +103,7 @@
     <ClInclude Include="Plane.h" />
     <ClInclude Include="RenderableObject.h" />
     <ClInclude Include="TargetCamera.h" />
+    <ClInclude Include="TexturedPlane.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
