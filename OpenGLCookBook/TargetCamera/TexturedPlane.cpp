@@ -14,6 +14,8 @@ TexturedPlane::TexturedPlane(const int w, const int d)
 	mShader.AddUniform("textureMap");
 	glUniform1i(mShader("textureMap"), 0);
 	mShader.UnUse();
+
+	Init();
 }
 
 void TexturedPlane::fillVertexBuffer(GLfloat* pBuf)

@@ -94,6 +94,7 @@
     <ClCompile Include="GLSLShader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="RenderableObject.cpp" />
     <ClCompile Include="TargetCamera.cpp" />
     <ClCompile Include="TexturedPlane.cpp" />
   </ItemGroup>
