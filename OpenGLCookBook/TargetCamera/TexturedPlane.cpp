@@ -45,13 +45,3 @@ void TexturedPlane::fillIndexBuffer(GLuint* pBuf)
 TexturedPlane::~TexturedPlane()
 {
 }
-
-void TexturedPlane::render(const GLfloat* MVP)
-{
-	mShader.Use();
-	glUniformMatrix4fv(mShader("MVP"), 1, GL_FALSE, MVP);
-	glBindVertexArray(mVaoID);
-	glDrawElements(primitiveType(), mTotalIndices, GL_UNSIGNED_INT, 0);
-	glBindVertexArray(0);
-	mShader.UnUse();
-}
