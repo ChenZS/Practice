@@ -6,11 +6,11 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "Grid.h"
-#include "TargetCamera.h"
+#include "TexturedPlane.h"
+#include "FreeCamera.h"
 
-TargetCamera camera;
-Grid *grid;
+FreeCamera camera;
+
 
 #define GL_CHECK_ERRORS assert(glGetError()== GL_NO_ERROR);
 
@@ -95,7 +95,7 @@ void OnMouseMove(int x, int y)
 	if (state == 0)
 	{
 		dist = (y - oldY) / 60.0f;
-		camera.zoom(dist);
+		//camera.zoom(dist);
 	}
 	else if (state == 2)
 	{
@@ -112,7 +112,7 @@ void OnMouseMove(int x, int y)
 			mouseY = dy;
 		}
 
-		camera.pan(mouseX, mouseY);
+		//camera.pan(mouseX, mouseY);
 	}
 	else
 	{
@@ -128,8 +128,6 @@ void OnMouseMove(int x, int y)
 			mouseX = rX;
 			mouseY = rY;
 		}
-
-		camera.rotate(mouseX, mouseY, 0);
 	}
 
 	oldX = x;
@@ -144,17 +142,16 @@ void OnInit()
 
 	GL_CHECK_ERRORS
 
-	grid = new Grid(10, 10);
 
-	camera.setPosition(glm::vec3(5, 5, 5));
-	camera.setTarget(glm::vec3(0, 0, 0));
+	//camera.setPosition(glm::vec3(5, 5, 5));
+	//camera.setTarget(glm::vec3(0, 0, 0));
 
 	cout << "Initialization successfull" << endl;
 }
 
 void OnShutdown()
 {
-	delete grid;
+
 	cout << "Shutdown successfull" << endl;
 }
 
@@ -192,8 +189,8 @@ void OnIdle()
 		bPressed = true;
 	}
 
-	if (bPressed)
-		camera.move(dx, dy);
+	//if (bPressed)
+		//camera.move(dx, dy);
 
 	glutPostRedisplay();
 }
@@ -206,7 +203,6 @@ void OnRender()
 	glm::mat4 P = camera.projectionMatrix();
 	glm::mat4 MVP = P * MV;
 
-	grid->render(glm::value_ptr(MVP));
 
 	glutSwapBuffers();
 }

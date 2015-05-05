@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleCamera", "SimpleCamer
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TargetCamera", "TargetCamera\TargetCamera.vcxproj", "{31FFC188-5C94-4B13-93A1-19A4233884EF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeCamera", "FreeCamera\FreeCamera.vcxproj", "{65288DAD-A1AE-4880-AA3C-E372FD1AE731}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -61,6 +63,10 @@ Global
 		{31FFC188-5C94-4B13-93A1-19A4233884EF}.Debug|Win32.Build.0 = Debug|Win32
 		{31FFC188-5C94-4B13-93A1-19A4233884EF}.Release|Win32.ActiveCfg = Release|Win32
 		{31FFC188-5C94-4B13-93A1-19A4233884EF}.Release|Win32.Build.0 = Release|Win32
+		{65288DAD-A1AE-4880-AA3C-E372FD1AE731}.Debug|Win32.ActiveCfg = Debug|Win32
+		{65288DAD-A1AE-4880-AA3C-E372FD1AE731}.Debug|Win32.Build.0 = Debug|Win32
+		{65288DAD-A1AE-4880-AA3C-E372FD1AE731}.Release|Win32.ActiveCfg = Release|Win32
+		{65288DAD-A1AE-4880-AA3C-E372FD1AE731}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,5 +80,6 @@ Global
 		{A769B3F4-6947-4672-B7EA-C5F560574129} = {2BD5703C-CB10-40C7-90E9-FC1F885A77B5}
 		{C800CAF8-84F1-4722-8E43-CDF5DDD1AF5B} = {B3C3EE15-341D-49A3-A684-9122AFB3180B}
 		{31FFC188-5C94-4B13-93A1-19A4233884EF} = {B3C3EE15-341D-49A3-A684-9122AFB3180B}
+		{65288DAD-A1AE-4880-AA3C-E372FD1AE731} = {B3C3EE15-341D-49A3-A684-9122AFB3180B}
 	EndGlobalSection
 EndGlobal
