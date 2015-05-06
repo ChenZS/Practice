@@ -26,3 +26,10 @@ glm::mat4 Camera::matrixRPY(const float yaw, const float pitch, const float roll
 	return glm::yawPitchRoll(yaw, pitch, roll);
 }
 
+void Camera::rotate(const float y, const float p, const float r)
+{
+	mYaw = glm::radians(y);
+	mPitch = glm::radians(p);
+	mRoll = glm::radians(r);
+	update();
+}

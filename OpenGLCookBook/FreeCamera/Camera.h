@@ -43,6 +43,7 @@ public:
 	glm::mat4 matrixRPY(const float yaw, const float pitch, const float roll);
 
 	virtual void update() = 0;
+	virtual void rotate(const float yaw, const float pitch, const float roll);
 
 protected:
 	float mFOV, mAspectRatio;
@@ -54,4 +55,6 @@ protected:
 	glm::mat4 mP;
 
 	static glm::vec3 sUp;
+
+	float mYaw, mPitch, mRoll;
 };
