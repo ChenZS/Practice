@@ -1,3 +1,4 @@
+#define _USE_MATH_DEFINES
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <iostream>
@@ -10,11 +11,10 @@
 #include "FreeCamera.h"
 
 FreeCamera camera;
-
+TexturedPlane* checker_plane;
+GLuint checkerTextureID;
 
 #define GL_CHECK_ERRORS assert(glGetError()== GL_NO_ERROR);
-
-//#pragma comment(lib, "glew32.lib")
 
 using namespace std;
 
@@ -36,6 +36,12 @@ const float MOVE_SPEED = 0.125f;
 const float MOUSE_FILTER_WEIGHT = 0.75f;
 const int MOUSE_HISTORY_BUFFER_SIZE = 10;
 glm::vec2 mouseHistory[MOUSE_HISTORY_BUFFER_SIZE];
+
+const float EPSILON = 0.001f;
+const float EPSILON2 = EPSILON * EPSILON;
+
+float dt = 0;
+float last_time = 0, current_time = 0;
 
 float mouseX = 0, mouseY = 0; 
 bool useFiltering = true;
@@ -138,20 +144,70 @@ void OnMouseMove(int x, int y)
 
 void OnInit()
 {
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	GL_CHECK_ERRORS
+	GLubyte data[128][128] = { 0 };
+	for (int j = 0; j<128; j++) 
+	{
+		for (int i = 0; i<128; i++) 
+		{
+			data[i][j] = (i <= 64 && j <= 64 || i>64 && j>64) ? 255 : 0;
+		}
+	}
+
+	glGenTextures(1, &checkerTextureID);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, checkerTextureID);
+	//set texture parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
 	GL_CHECK_ERRORS
 
+	GLfloat largest_supported_anisotropy;
+	glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &largest_supported_anisotropy);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, largest_supported_anisotropy);
 
-	//camera.setPosition(glm::vec3(5, 5, 5));
-	//camera.setTarget(glm::vec3(0, 0, 0));
+	//set mipmap base and max level
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 4);
+
+	//allocate texture object
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, 128, 128, 0, GL_RED, GL_UNSIGNED_BYTE, data);
+
+	//generate mipmaps
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	GL_CHECK_ERRORS
+
+	checker_plane = new TexturedPlane();
+
+	GL_CHECK_ERRORS
+
+	glm::vec3 p = glm::vec3(5);
+	camera.setPosition(p);
+	glm::vec3 look = glm::normalize(p);
+
+	float yaw = glm::degrees(float(atan2(look.z, look.x) + M_PI));
+	float pitch = glm::degrees(asin(look.y));
+	rX = yaw;
+	rY = pitch;
+
+	if (useFiltering) {
+		for (int i = 0; i < MOUSE_HISTORY_BUFFER_SIZE; ++i) {
+			mouseHistory[i] = glm::vec2(rX, rY);
+		}
+	}
+	camera.rotate(rX, rY, 0);
 
 	cout << "Initialization successfull" << endl;
 }
 
 void OnShutdown()
 {
-
+	delete checker_plane;
+	glDeleteTextures(1, &checkerTextureID);
 	cout << "Shutdown successfull" << endl;
 }
 
@@ -203,6 +259,8 @@ void OnRender()
 	glm::mat4 P = camera.projectionMatrix();
 	glm::mat4 MVP = P * MV;
 
+	//render the chekered plane
+	checker_plane->render(glm::value_ptr(MVP));
 
 	glutSwapBuffers();
 }
